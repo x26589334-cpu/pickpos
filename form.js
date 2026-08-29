@@ -1,15 +1,13 @@
 /* ===========================================================
    견적 신청 폼 → 구글 시트 연결 (픽포스)
    -----------------------------------------------------------
-   다른 사이트(kids-online, gwaoe-page)와 같은 방식입니다.
-   1) 구글 시트 새로 만들기 → 확장 프로그램 → Apps Script
-   2) gwaoe-page/apps-script-과외.gs 내용을 붙여넣고 SHEET_NAME 을 "견적" 으로 변경
-   3) 배포 → 새 배포 → 웹 앱 (액세스: 모든 사용자) → 웹앱 URL 복사
-   4) 아래 SHEET_ENDPOINT 의 PASTE_ 부분을 그 URL로 교체
-   연결 전에는 "데모 모드"로 동작해서 접수 완료 문구만 뜨고 어디에도 저장되지 않습니다.
+   kids-online·gwaoe-page 와 같은 Apps Script 웹앱(구글 "웹 문의" 시트)으로 보냅니다.
+   - 폼이 sheet=견적 을 함께 보내므로, 스크립트가 sheet 파라미터를 지원하면 "견적" 탭에,
+     아니면 "과외" 탭에 쌓이며 구분 컬럼이 "픽포스-견적신청" 으로 표시됩니다.
+   - 별도 탭/별도 시트로 나누려면 apps-script-견적.gs 를 새 웹앱으로 배포하고 아래 URL만 교체.
    =========================================================== */
 
-const SHEET_ENDPOINT = "PASTE_APPS_SCRIPT_WEBAPP_URL_HERE";
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbznAb0ZOODlNp-ckR5fvkqtVQijwuJ9Gl0G4KxDrfp-K7zM4fcfMMp5qDhAbwNkvYQG/exec";
 
 function _val(id){ const el = document.getElementById(id); return el ? String(el.value).trim() : ""; }
 
