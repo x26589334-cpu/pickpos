@@ -7,7 +7,7 @@
 
 // 참고용 예시 단가 (원). rent = 월 렌탈료, buy = 구입가
 const PRICE = {
-  pos:        { name: "포스기",        rent: 34000, buy: 890000 },
+  pos:        { name: "포스기",        rent: 21000, buy: 890000 },
   terminal:   { name: "카드단말기",    rent: 9900,  buy: 150000 },
   kiosk:      { name: "키오스크",      rent: 33000, buy: 1900000 },
   tableorder: { name: "테이블오더",    rent: 14000, buy: 250000 },
