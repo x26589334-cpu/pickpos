@@ -2,7 +2,7 @@
    견적 신청 폼 → 구글 시트 연결 (픽포스)
    -----------------------------------------------------------
    kids-online·gwaoe-page 와 같은 Apps Script 웹앱(구글 "웹 문의" 시트)으로 보냅니다.
-   - 폼이 sheet=픽포스 를 함께 보내므로, 스크립트가 sheet 파라미터를 지원하면 "픽포스" 탭에,
+   - 폼이 sheet=픽포스 를 함께 보내므로, 스크립트가 sheet 파라미터를 지원하면 "서포트포스" 탭에,
      아니면 "과외" 탭에 쌓이며 구분 컬럼이 "픽포스-견적신청" 으로 표시됩니다.
    - 별도 탭/별도 시트로 나누려면 apps-script-견적.gs 를 새 웹앱으로 배포하고 아래 URL만 교체.
    =========================================================== */
@@ -40,7 +40,7 @@ function _sendToSheet(payload){
     if(!document.getElementById("q_agree").checked){ alert("연락처 수집·이용에 동의해 주세요."); return; }
 
     const payload = {
-      sheet: "픽포스",
+      sheet: "서포트포스",
       _form: "픽포스-견적신청",
       _page: location.pathname,
       _time: new Date().toLocaleString("ko-KR"),
