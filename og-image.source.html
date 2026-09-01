@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    font-family:'IBM Plex Sans KR','Malgun Gothic',sans-serif;
+    background:
+      radial-gradient(900px 520px at 78% 18%, rgba(242,92,31,.28), transparent 62%),
+      linear-gradient(135deg,#0C1A33 0%,#14284B 52%,#0C1A33 100%);
+    color:#FFFDF9;position:relative;
+  }
+  /* 얇은 격자 텍스처 */
+  .grid{position:absolute;inset:0;opacity:.06;
+    background-image:linear-gradient(#FFFDF9 1px,transparent 1px),linear-gradient(90deg,#FFFDF9 1px,transparent 1px);
+    background-size:48px 48px}
+  .wrap{position:relative;height:100%;display:flex;align-items:center;padding:0 74px;gap:40px}
+
+  .left{width:660px;flex:none}
+  .brand{display:flex;align-items:center;gap:16px;margin-bottom:30px}
+  .mark{width:66px;height:66px;border-radius:18px;background:#F2B234;
+    display:flex;align-items:center;justify-content:center;
+    font-family:Georgia,serif;font-weight:900;font-size:42px;color:#14284B;
+    box-shadow:0 12px 30px -10px rgba(242,178,52,.7)}
+  .name{font-size:31px;font-weight:700;letter-spacing:-.01em}
+  .name span{display:block;font-size:15px;font-weight:500;letter-spacing:.24em;
+    color:#F2B234;margin-top:3px}
+
+  h1{font-family:'Noto Serif KR','Nanum Myeongjo',serif;font-weight:900;
+    font-size:60px;line-height:1.25;letter-spacing:-.02em;margin-bottom:24px}
+  h1 em{font-style:normal;color:#F2B234}
+
+  .sub{font-size:25px;font-weight:500;color:#D9E0EC;line-height:1.5;margin-bottom:32px}
+  .sub b{color:#FFFDF9;font-weight:600}
+
+  .chips{display:flex;gap:11px}
+  .chip{font-size:17px;font-weight:600;padding:11px 19px;border-radius:999px;
+    background:rgba(255,253,249,.09);border:1px solid rgba(255,253,249,.22)}
+  .chip.hot{background:#F25C1F;border-color:#F25C1F;color:#fff}
+
+  .right{flex:1;position:relative;height:100%}
+  .shot{position:absolute;border-radius:22px;overflow:hidden;background:#fff;
+    box-shadow:0 40px 80px -30px rgba(0,0,0,.75)}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block}
+  .s1{width:292px;height:292px;top:126px;left:0px;transform:rotate(-5deg);
+    border:5px solid rgba(255,253,249,.9);z-index:2}
+  .s2{width:202px;height:202px;top:40px;left:188px;transform:rotate(6deg);
+    border:5px solid rgba(242,178,52,.92);z-index:1}
+  .s3{width:196px;height:196px;top:352px;left:184px;transform:rotate(3deg);
+    border:5px solid rgba(255,253,249,.75);z-index:3}
+
+  .foot{position:absolute;left:74px;bottom:44px;display:flex;align-items:center;gap:14px;
+    font-size:20px;font-weight:600;color:#F2B234;letter-spacing:.01em}
+  .foot .dot{width:7px;height:7px;border-radius:50%;background:#F25C1F}
+  .foot .tel{color:#D9E0EC;font-weight:500}
+  .bar{position:absolute;left:0;right:0;bottom:0;height:11px;
+    background:linear-gradient(90deg,#F25C1F 0%,#F2B234 58%,#F25C1F 100%)}
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="wrap">
+    <div class="left">
+      <div class="brand">
+        <div class="mark">P</div>
+        <div class="name">픽포스<span>PICKPOS</span></div>
+      </div>
+      <h1>골라서 비교하고,<br><em>설치까지</em> 한 번에</h1>
+      <p class="sub">포스기 · 카드단말기 · 키오스크<br><b>테이블오더 · 무인자판기</b> 비교 견적</p>
+      <div class="chips">
+        <div class="chip hot">견적 무료</div>
+        <div class="chip">구입·렌탈 비교</div>
+        <div class="chip">교체·이전·철거</div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="shot s2"><img src="images/kiosk.jpg" alt="" /></div>
+      <div class="shot s1"><img src="images/pos.jpg" alt="" /></div>
+      <div class="shot s3"><img src="images/terminal.jpg" alt="" /></div>
+    </div>
+  </div>
+  <div class="foot"><span class="dot"></span>hsupporter.com<span class="tel">· 상담 010-6832-1994</span></div>
+  <div class="bar"></div>
+</body>
+</html>

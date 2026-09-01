@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+
+# OG 이미지 생성용 원본 — 방문자용 페이지가 아니므로 색인 제외
+Disallow: /og-image.source.html
+
 Sitemap: https://hsupporter.com/sitemap.xml
