@@ -169,3 +169,22 @@ mnav.addEventListener("click", e => { if(e.target.tagName === "A"){ mnav.classLi
 
 /* ---------- 연도 ---------- */
 document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ---------- 상단 바 스크롤 상태 ---------- */
+const topBar = document.getElementById("top");
+const onScroll = () => topBar.classList.toggle("is-scrolled", window.scrollY > 10);
+addEventListener("scroll", onScroll, { passive: true });
+onScroll();
+
+/* ---------- 스크롤 등장 효과 ---------- */
+const revealEls = document.querySelectorAll(".reveal");
+if("IntersectionObserver" in window){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  }, { threshold: .12, rootMargin: "0px 0px -40px 0px" });
+  revealEls.forEach(el => io.observe(el));
+}else{
+  revealEls.forEach(el => el.classList.add("in"));
+}
