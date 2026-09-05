@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+  /* compare/ 글 하나당 OG 이미지 1장. {{...}} 자리를 채워서 렌더한다. 방법은 _content/글양식.md */
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{font-family:'Pretendard Variable','Pretendard','Malgun Gothic',sans-serif;color:#FFFDF9;position:relative;
+    background:radial-gradient(900px 520px at 82% 10%, rgba(242,92,31,.30), transparent 62%),
+               linear-gradient(135deg,#0C1A33 0%,#14284B 55%,#0C1A33 100%)}
+  .grid{position:absolute;inset:0;opacity:.06;
+    background-image:linear-gradient(#FFFDF9 1px,transparent 1px),linear-gradient(90deg,#FFFDF9 1px,transparent 1px);
+    background-size:48px 48px}
+  .wrap{position:relative;height:100%;padding:58px 74px 0;display:flex;flex-direction:column}
+  .brand{display:flex;align-items:center;gap:14px}
+  .mark{width:48px;height:48px;border-radius:14px;background:#F2B234;color:#14284B;font-weight:900;font-size:30px;
+    display:flex;align-items:center;justify-content:center}
+  .name{font-size:24px;font-weight:700}
+  .name span{font-size:15px;font-weight:600;color:#F2B234;margin-left:10px;letter-spacing:.14em}
+  .eyebrow{margin-top:44px;font-size:20px;font-weight:700;color:#F2B234;letter-spacing:.04em}
+  h1{margin-top:10px;font-size:62px;font-weight:800;line-height:1.18;letter-spacing:-.02em}
+  h1 em{font-style:normal;color:#F2B234}
+  .sub{margin-top:14px;font-size:24px;color:#D9E0EC;font-weight:500}
+  .bars{margin-top:36px;display:flex;flex-direction:column;gap:14px;width:1000px}
+  .bar{display:grid;grid-template-columns:70px 1fr 220px;align-items:center;gap:18px;font-size:24px;font-weight:700}
+  .bar .track{height:34px;background:rgba(255,253,249,.10);border-radius:10px;overflow:hidden}
+  .bar .fill{height:100%;border-radius:10px}
+  .bar.rent .fill{background:#F25C1F;width:{{RENT_W}}%}
+  .bar.buy  .fill{background:#F2B234;width:{{BUY_W}}%}
+  .bar .val{text-align:right;font-variant-numeric:tabular-nums}
+  .verdict{margin-top:auto;margin-bottom:46px;display:flex;justify-content:space-between;align-items:flex-end}
+  .verdict .v{font-size:26px;font-weight:700;background:rgba(255,253,249,.10);border:1px solid rgba(255,253,249,.2);
+    padding:14px 22px;border-radius:14px}
+  .verdict .v b{color:#F2B234}
+  .verdict .site{font-size:20px;color:#D9E0EC;font-weight:600}
+  .verdict .site b{color:#F25C1F;margin-right:8px}
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="brand"><div class="mark">P</div><div class="name">픽포스<span>PICKPOS</span></div></div>
+  <div class="eyebrow">{{EYEBROW}}</div>
+  <h1>{{TITLE}}</h1>
+  <div class="sub">{{SUB}}</div>
+  <div class="bars">
+    <div class="bar rent"><span>렌탈</span><div class="track"><div class="fill"></div></div><span class="val">{{RENT}}</span></div>
+    <div class="bar buy"><span>구입</span><div class="track"><div class="fill"></div></div><span class="val">{{BUY}}</span></div>
+  </div>
+  <div class="verdict">
+    <div class="v">{{VERDICT}}</div>
+    <div class="site"><b>●</b>hsupporter.com</div>
+  </div>
+</div>
+</body>
+</html>
