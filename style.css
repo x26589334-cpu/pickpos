@@ -430,3 +430,54 @@ ul,ol{margin:0;padding:0;list-style:none}
   .art-cta{grid-template-columns:1fr;padding:22px}
   .art-tbl th,.art-tbl td{padding:11px 12px;font-size:.9rem}
 }
+
+/* =========================================================
+   지역 페이지 (region/) — 동네별 추천 · 역세권 · 키워드 블록
+   ========================================================= */
+.hood-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:8px 0 26px}
+.hood{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;transition:transform .2s,box-shadow .2s,border-color .2s}
+.hood:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm);border-color:var(--cream-deep)}
+.hood h3{font-size:1.05rem;margin:0 0 6px;color:var(--navy)}
+.hood h3 small{display:block;font-size:.74rem;font-weight:700;color:var(--accent);letter-spacing:.04em;margin-bottom:3px}
+.hood p{font-size:.9rem;color:var(--muted);line-height:1.6;margin:0}
+.hood b{color:var(--ink)}
+
+.station-box{background:var(--cream);border-radius:14px;padding:20px 22px;margin:8px 0 26px}
+.station-box h3{font-size:.98rem;margin:0 0 10px;color:var(--navy)}
+.art .station-list,.station-list{display:flex;flex-direction:row;flex-wrap:wrap;gap:7px;margin:0}
+.station-list li{padding:0;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:.87rem;font-weight:600;color:var(--navy)}
+.station-list li::before{display:none}
+
+.prod-rows{display:flex;flex-direction:column;gap:12px;margin:8px 0 26px}
+.prod-row{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:150px 1fr 190px;gap:18px;align-items:center}
+.prod-row h3{margin:0;font-size:1.02rem;color:var(--navy)}
+.prod-row p{margin:0;font-size:.9rem;color:var(--muted);line-height:1.6}
+.prod-row .price{text-align:right;font-size:.88rem;color:var(--muted);line-height:1.5}
+.prod-row .price b{display:block;font-size:1.05rem;color:var(--navy);font-variant-numeric:tabular-nums}
+.prod-row .price em{font-style:normal;color:var(--accent-dark);font-weight:700}
+
+.area-note{background:var(--cream);border-radius:12px;padding:16px 20px;margin:8px 0 26px;font-size:.92rem;color:var(--muted);line-height:1.75}
+.area-note b{color:var(--navy)}
+
+/* 지역 허브 목록 */
+.reg-groups{display:flex;flex-direction:column;gap:26px}
+.reg-group h3{font-size:1.05rem;color:var(--navy);margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.art .reg-links,.reg-links{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px;margin:0}
+.reg-links li{padding:0}
+.reg-links li::before{display:none}
+.reg-links a{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 15px;font-size:.92rem;font-weight:700;color:var(--navy);text-decoration:none!important;transition:.15s}
+.reg-links a:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.reg-links .soon{display:inline-block;background:transparent;border:1px dashed var(--cream-deep);border-radius:10px;padding:9px 15px;font-size:.92rem;font-weight:600;color:var(--muted)}
+
+/* 비교 가이드 카드 — 블로그 느낌 (날짜) */
+.cmp-card .cmp-date{font-size:.78rem;color:var(--muted);font-weight:600}
+
+@media (max-width:1000px){
+  .hood-grid{grid-template-columns:1fr 1fr}
+  .prod-row{grid-template-columns:130px 1fr;gap:12px}
+  .prod-row .price{grid-column:1/-1;text-align:left}
+}
+@media (max-width:760px){
+  .hood-grid{grid-template-columns:1fr}
+  .prod-row{grid-template-columns:1fr;gap:8px}
+}
