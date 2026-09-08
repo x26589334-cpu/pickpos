@@ -481,3 +481,40 @@ ul,ol{margin:0;padding:0;list-style:none}
   .hood-grid{grid-template-columns:1fr}
   .prod-row{grid-template-columns:1fr;gap:8px}
 }
+
+/* =========================================================
+   지역 페이지 — H포스식 구성 (배지 · 취급기기 칩 · 동별 · 업종)
+   ========================================================= */
+.geo-badge{display:inline-flex;align-items:center;gap:7px;background:var(--navy);color:#fff;font-size:.82rem;font-weight:700;padding:7px 15px;border-radius:999px;margin-bottom:16px}
+.geo-badge b{color:var(--gold);font-weight:800}
+
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.chip-row li{padding:0}
+.chip-row li::before{display:none}
+.chip-row span{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:.87rem;font-weight:700;color:var(--navy)}
+
+.art .dong-list,.dong-list{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px;margin:0}
+.dong-list li{padding:0}
+.dong-list li::before{display:none}
+.dong-list span{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 16px;font-size:.93rem;font-weight:700;color:var(--navy)}
+
+.kw-block{background:var(--cream);border-radius:14px;padding:16px 20px;margin:14px 0 26px;font-size:.88rem;color:var(--muted);line-height:1.9}
+.kw-block b{color:var(--navy);font-weight:700}
+
+.biz-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 20px;margin:8px 0 26px}
+.biz-list li{padding-left:0;font-size:.95rem}
+.biz-list li::before{display:none}
+.biz-list li em{font-style:normal;display:inline-block;width:26px;color:var(--accent);font-weight:800}
+
+.svc-links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:8px 0 26px}
+.svc-links a{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;font-weight:700;color:var(--navy);text-decoration:none!important;transition:.2s;display:block}
+.svc-links a:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm);border-color:var(--navy)}
+.svc-links a small{display:block;font-size:.83rem;font-weight:500;color:var(--muted);margin-top:5px;line-height:1.5}
+.svc-links a::after{content:" →";color:var(--accent)}
+
+@media (max-width:760px){
+  .biz-list,.svc-links{grid-template-columns:1fr}
+  .hero-cta .btn{width:100%}
+}
