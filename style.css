@@ -518,3 +518,40 @@ ul,ol{margin:0;padding:0;list-style:none}
   .biz-list,.svc-links{grid-template-columns:1fr}
   .hero-cta .btn{width:100%}
 }
+
+/* =========================================================
+   설치 후기 (review/) — 글 · 목록
+   ========================================================= */
+.rev-hero{padding:44px 0 26px;background:
+  radial-gradient(760px 340px at 88% -10%, rgba(242,178,52,.15), transparent 60%),var(--paper)}
+.rev-date{font-size:.85rem;font-weight:700;color:var(--accent);letter-spacing:.02em;margin-bottom:10px}
+.rev-hero h1{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;max-width:840px;line-height:1.25}
+
+.rev-photo{margin:0 0 28px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--cream)}
+.rev-photo img{width:100%;height:auto;display:block}
+.rev-photo figcaption{font-size:.84rem;color:var(--muted);padding:11px 16px;background:#fff;border-top:1px solid var(--line)}
+
+.kw-box{background:var(--cream);border-radius:14px;padding:18px 20px;margin:26px 0 0;font-size:.86rem;color:var(--muted);line-height:1.9}
+.kw-box b{display:block;color:var(--navy);font-size:.9rem;margin-bottom:6px}
+
+.dong-line{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:8px 0 26px;font-size:.92rem;line-height:1.85;color:var(--muted)}
+.dong-line b{color:var(--navy)}
+
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rev-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s}
+.rev-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm);border-color:var(--cream-deep)}
+.rev-card .thumb{aspect-ratio:4/3;overflow:hidden;background:var(--cream)}
+.rev-card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.rev-card .body{padding:18px 20px;display:flex;flex-direction:column;gap:7px;flex:1}
+.rev-card .tag{font-size:.74rem;font-weight:800;letter-spacing:.06em;color:var(--accent)}
+.rev-card h3{font-size:1.04rem;line-height:1.4}
+.rev-card p{font-size:.88rem;color:var(--muted);line-height:1.6;flex:1}
+.rev-card .go{font-size:.86rem;font-weight:700;color:var(--navy)}
+.rev-card .go::after{content:" →"}
+
+@media (max-width:1000px){ .rev-grid{grid-template-columns:1fr 1fr} }
+@media (max-width:760px){
+  .rev-hero{padding:30px 0 20px}
+  .rev-grid{grid-template-columns:1fr}
+  .kw-box{font-size:.82rem;line-height:1.85}
+}
