@@ -24,6 +24,21 @@ $destPath = Join-Path $destDir $Out
 
 $img = [System.Drawing.Image]::FromFile((Resolve-Path $Src))
 try {
+  # ⚠️ EXIF 회전 정보를 먼저 적용한다.
+  # 폰으로 찍은 사진은 세로로 찍어도 파일은 가로로 저장되고, "EXIF 회전값"에 방향이 따로 적힌다.
+  # 이걸 무시하면 사진이 눕거나 뒤집힌 채로 저장된다 (2026-09-10 평택 글에서 실제로 발생).
+  if ($img.PropertyIdList -contains 0x0112) {
+    switch ($img.GetPropertyItem(0x0112).Value[0]) {
+      2 { $img.RotateFlip([System.Drawing.RotateFlipType]::RotateNoneFlipX) }
+      3 { $img.RotateFlip([System.Drawing.RotateFlipType]::Rotate180FlipNone) }
+      4 { $img.RotateFlip([System.Drawing.RotateFlipType]::Rotate180FlipX) }
+      5 { $img.RotateFlip([System.Drawing.RotateFlipType]::Rotate90FlipX) }
+      6 { $img.RotateFlip([System.Drawing.RotateFlipType]::Rotate90FlipNone) }
+      7 { $img.RotateFlip([System.Drawing.RotateFlipType]::Rotate270FlipX) }
+      8 { $img.RotateFlip([System.Drawing.RotateFlipType]::Rotate270FlipNone) }
+    }
+  }
+
   # 긴 변을 $Max 로 맞춘다 (원본이 더 작으면 그대로)
   $ratio = [Math]::Min(1.0, $Max / [Math]::Max($img.Width, $img.Height))
   $w = [int][Math]::Round($img.Width  * $ratio)
