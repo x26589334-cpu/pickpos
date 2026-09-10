@@ -9,6 +9,14 @@
 - 배포: GitHub Pages (main / root) → https://hsupporter.com/ · 푸시 후 1~2분이면 반영
 - 리포: https://github.com/x26589334-cpu/pickpos
 
+## 메인 구조 (2026-09-10 H포스식으로 개편)
+순서: 빵부스러기 → **#regions 지역 찾기**(시도 17·시군구 234, 검색·장비토글) → **#stats 전국 서비스 안내**
+→ #finder 장비 진단 → #catalog → #calc → #process → #sets → #swap → #faq → #quote
+- 지역 데이터는 **`region-data.js`** 의 `PICK_REGIONS`. 지역 전용 페이지가 있는 곳만 `PICK_REGION_PAGES` 에 적는다.
+  적힌 곳은 그 페이지로 이동하고(칩에 "안내" 배지), 없는 곳은 **견적 폼의 지역칸·장비 체크박스를 채우고 #quote 로 보낸다.**
+  → `region/` 에 새 지역 글을 쓰면 `PICK_REGION_PAGES` 에 한 줄 추가할 것.
+- 지역 찾기 동작은 `script.js` 맨 아래 블록.
+
 ## 주의사항
 - **캐시 버전**: `style.css` / `script.js` / `og-image.png` 를 수정하면 `index.html` 안의
   `?v=` 값을 전부 올려야 방문자에게 반영된다. 안 올리면 "바뀐 게 없다"가 된다.
