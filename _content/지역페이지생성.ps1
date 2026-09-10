@@ -116,7 +116,7 @@ foreach ($r in $rows) {
 <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-<link rel="stylesheet" href="../style.css?v=20260910b" />
+<link rel="stylesheet" href="../style.css?v=20260910c" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -334,7 +334,7 @@ foreach ($r in $rows) {
   <a href="../#quote" class="mbar-main">견적 받기</a>
 </div>
 
-<script src="../page.js?v=20260910b"></script>
+<script src="../page.js?v=20260910c"></script>
 </body>
 </html>
 "@

@@ -278,3 +278,24 @@ if("IntersectionObserver" in window){
     if(results && !results.contains(e.target) && e.target !== search) results.classList.remove("on");
   });
 })();
+
+/* ---------- 카탈로그 탭 바로가기 ----------
+   #catalog-vending 처럼 오면 카탈로그로 이동하면서 그 탭을 연다.
+   상단 메뉴의 "포스기·카드단말기"와 "무인자판기"가 서로 다른 곳을 가리키게 하는 용도.
+   쓸 수 있는 값: pos · terminal · kiosk · tableorder · vending          */
+(function(){
+  function openTab(key){
+    const tab = document.querySelector('.tab[data-tab="' + key + '"]');
+    if(!tab) return false;
+    tab.click();
+    const sec = document.getElementById("catalog");
+    if(sec) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+    return true;
+  }
+  function fromHash(){
+    const m = /^#catalog-([a-z]+)$/.exec(location.hash);
+    if(m) openTab(m[1]);
+  }
+  addEventListener("hashchange", fromHash);
+  fromHash();
+})();

@@ -12,6 +12,8 @@
 ## 메인 구조 (2026-09-10 H포스식으로 개편)
 순서: 빵부스러기 → **#regions 지역 찾기**(시도 17·시군구 234, 검색·장비토글) → **#stats 전국 서비스 안내**
 → #finder 장비 진단 → #catalog → #calc → #process → #sets → #swap → #faq → #quote
+- **카탈로그 탭 바로가기**: `#catalog-pos` `#catalog-terminal` `#catalog-kiosk` `#catalog-tableorder` `#catalog-vending`
+  상단 메뉴의 "포스기·카드단말기"와 "무인자판기"가 같은 `#catalog` 를 가리키던 것을 이걸로 갈랐다. 동작은 `script.js` 맨 아래.
 - 지역 데이터는 **`region-data.js`** 의 `PICK_REGIONS`. 지역 전용 페이지가 있는 곳만 `PICK_REGION_PAGES` 에 적는다.
   적힌 곳은 그 페이지로 이동하고(칩에 "안내" 배지), 없는 곳은 **견적 폼의 지역칸·장비 체크박스를 채우고 #quote 로 보낸다.**
   → `region/` 에 새 지역 글을 쓰면 `PICK_REGION_PAGES` 에 한 줄 추가할 것.
