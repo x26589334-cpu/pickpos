@@ -31,7 +31,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-<link rel="stylesheet" href="style.css?v=20260910c" />
+<link rel="stylesheet" href="style.css?v=20260910d" />
 
 <script type="application/ld+json">
 {
@@ -91,7 +91,8 @@
       <a href="#regions">지역 찾기</a>
       <a href="#catalog-pos">포스기·카드단말기</a>
       <a href="#catalog-vending">무인자판기</a>
-      <a href="#calc">비용 계산</a>
+      <a href="compare/">비교 가이드</a>
+      <a href="region/">지역별 견적</a>
       <a href="review/">설치 후기</a>
     </nav>
     <div class="top-cta">
@@ -104,7 +105,6 @@
     <a href="#regions">지역 찾기</a>
     <a href="#finder">장비 진단</a>
     <a href="#catalog">장비 안내</a>
-    <a href="#calc">비용 계산</a>
     <a href="compare/">비교 가이드</a>
     <a href="region/">지역별 견적</a>
     <a href="review/">설치 후기</a>
@@ -360,63 +360,6 @@
   </div>
 </section>
 
-<!-- ===== 비용 계산기 ===== -->
-<section class="sec sec-dark" id="calc">
-  <div class="wrap">
-    <div class="sec-head light reveal">
-      <span class="num">02</span>
-      <h2>구입 vs 렌탈, 36개월 총비용 계산</h2>
-      <p>필요한 장비와 수량을 넣으면 두 방식의 초기비용·월비용·3년 총비용을 나란히 보여줍니다.</p>
-    </div>
-
-    <div class="calc">
-      <div class="calc-items" id="calcItems">
-        <div class="ci" data-key="pos">
-          <div class="ci-name"><b>포스기</b><span>렌탈 21,000원/월 · 구입 890,000원</span></div>
-          <div class="ci-qty"><button type="button" class="q-btn" data-d="-1" aria-label="수량 줄이기">−</button><input type="number" min="0" max="50" value="1" aria-label="포스기 수량" /><button type="button" class="q-btn" data-d="1" aria-label="수량 늘리기">+</button></div>
-        </div>
-        <div class="ci" data-key="terminal">
-          <div class="ci-name"><b>카드단말기</b><span>렌탈 9,900원/월 · 구입 150,000원</span></div>
-          <div class="ci-qty"><button type="button" class="q-btn" data-d="-1" aria-label="수량 줄이기">−</button><input type="number" min="0" max="50" value="1" aria-label="카드단말기 수량" /><button type="button" class="q-btn" data-d="1" aria-label="수량 늘리기">+</button></div>
-        </div>
-        <div class="ci" data-key="tosspay">
-          <div class="ci-name"><b>토스페이결제기</b><span>렌탈 11,000원/월 · 구입 250,000원</span></div>
-          <div class="ci-qty"><button type="button" class="q-btn" data-d="-1" aria-label="수량 줄이기">−</button><input type="number" min="0" max="50" value="0" aria-label="토스페이결제기 수량" /><button type="button" class="q-btn" data-d="1" aria-label="수량 늘리기">+</button></div>
-        </div>
-        <div class="ci" data-key="kiosk">
-          <div class="ci-name"><b>키오스크</b><span>렌탈 33,000원/월 · 구입 1,900,000원</span></div>
-          <div class="ci-qty"><button type="button" class="q-btn" data-d="-1" aria-label="수량 줄이기">−</button><input type="number" min="0" max="50" value="0" aria-label="키오스크 수량" /><button type="button" class="q-btn" data-d="1" aria-label="수량 늘리기">+</button></div>
-        </div>
-        <div class="ci" data-key="tableorder">
-          <div class="ci-name"><b>테이블오더 (태블릿 1대)</b><span>렌탈 14,000원/월 · 구입 250,000원</span></div>
-          <div class="ci-qty"><button type="button" class="q-btn" data-d="-1" aria-label="수량 줄이기">−</button><input type="number" min="0" max="100" value="0" aria-label="테이블오더 수량" /><button type="button" class="q-btn" data-d="1" aria-label="수량 늘리기">+</button></div>
-        </div>
-        <div class="ci" data-key="vending">
-          <div class="ci-name"><b>무인자판기 (멀티형)</b><span>렌탈 250,000원/월 · 구입 2,900,000원</span></div>
-          <div class="ci-qty"><button type="button" class="q-btn" data-d="-1" aria-label="수량 줄이기">−</button><input type="number" min="0" max="20" value="0" aria-label="무인자판기 수량" /><button type="button" class="q-btn" data-d="1" aria-label="수량 늘리기">+</button></div>
-        </div>
-      </div>
-
-      <div class="calc-result">
-        <div class="cr-col">
-          <p class="cr-head">렌탈</p>
-          <div class="cr-row"><span>초기비용</span><strong id="rInit">0원</strong></div>
-          <div class="cr-row"><span>월비용</span><strong id="rMonth">0원</strong></div>
-          <div class="cr-row total"><span>36개월 총</span><strong id="rTotal">0원</strong></div>
-        </div>
-        <div class="cr-col">
-          <p class="cr-head">구입</p>
-          <div class="cr-row"><span>초기비용</span><strong id="bInit">0원</strong></div>
-          <div class="cr-row"><span>월비용</span><strong id="bMonth">0원</strong></div>
-          <div class="cr-row total"><span>36개월 총</span><strong id="bTotal">0원</strong></div>
-        </div>
-        <div class="cr-verdict" id="crVerdict">장비를 선택해 주세요.</div>
-        <p class="cr-note">※ 월 이용료(렌탈)는 기본 요금 기준이며 단말기 종류·기능에 따라 달라질 수 있습니다. 구입가는 참고용 예시입니다. 설치비는 두 방식 모두 무료이며, 정확한 금액은 견적서로 안내드립니다.</p>
-        <a class="btn btn-accent btn-block" href="#quote" id="calcCta">이 수량으로 견적서 받기</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ===== 진행 절차 ===== -->
 <section class="sec" id="process">
@@ -553,7 +496,7 @@
     <div class="faq reveal">
       <details open>
         <summary>구입과 렌탈 중 어느 쪽이 유리한가요?</summary>
-        <p>3년 이상 같은 자리에서 운영할 계획이면 구입이, 초기 비용을 아끼거나 매장 변동 가능성이 있으면 렌탈이 유리한 경우가 많습니다. 위 <a href="#calc">비용 계산기</a>에서 36개월 총비용을 직접 비교해 보세요. 견적서에는 두 방식을 모두 넣어 드립니다.</p>
+        <p>3년 이상 같은 자리에서 운영할 계획이면 구입이, 초기 비용을 아끼거나 매장 변동 가능성이 있으면 렌탈이 유리한 경우가 많습니다. 위 <a href="compare/">구입 vs 렌탈 비교</a>에서 36개월 총비용을 직접 비교해 보세요. 견적서에는 두 방식을 모두 넣어 드립니다.</p>
       </details>
       <details>
         <summary>지금 쓰는 장비가 있는데 교체만 가능한가요?</summary>
@@ -665,7 +608,6 @@
     <nav class="foot-nav" aria-label="바닥 메뉴">
       <a href="#finder">장비 진단</a>
       <a href="#catalog">카탈로그</a>
-      <a href="#calc">비용 계산</a>
       <a href="#sets">업종별 세트</a>
       <a href="#swap">교체·철거</a>
       <a href="compare/">비교 가이드</a>
@@ -684,8 +626,8 @@
   <a href="#quote" class="mbar-main">견적 받기</a>
 </div>
 
-<script src="region-data.js?v=20260910c"></script>
-<script src="script.js?v=20260910c"></script>
-<script src="form.js?v=20260910c"></script>
+<script src="region-data.js?v=20260910d"></script>
+<script src="script.js?v=20260910d"></script>
+<script src="form.js?v=20260910d"></script>
 </body>
 </html>

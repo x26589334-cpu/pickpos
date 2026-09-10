@@ -1,5 +1,5 @@
 /* =========================================================
-   픽포스 — 페이지 동작 (진단 · 카탈로그 탭 · 비용 계산기 · 메뉴 등)
+   픽포스 — 페이지 동작 (진단 · 카탈로그 탭 · 지역 찾기 · 메뉴 등)
    ※ 단가는 아래 PRICE 하나만 고치면 계산기 / 진단 / 카탈로그 문구가 아니라
       "계산기"와 "진단 예상 월비용"에 반영됩니다. 카탈로그·세트의 표기 금액은
       index.html 에 직접 적혀 있으니 함께 바꿔 주세요.
@@ -28,7 +28,7 @@ const RECO = {
   },
   food: {
     s: { items: [["pos",1,"주방 프린터 포함"],["terminal",1,"무선형"]], note: "테이블이 적어도 주방 출력이 있으면 실수가 줄어듭니다." },
-    m: { items: [["tableorder",8,"테이블 8개 기준"],["pos",1,"테이블오더 연동"],["terminal",1,"무선형"]], note: "테이블오더는 테이블 수만큼 태블릿이 들어갑니다. 수량은 계산기에서 바꿔 보세요." },
+    m: { items: [["tableorder",8,"테이블 8개 기준"],["pos",1,"테이블오더 연동"],["terminal",1,"무선형"]], note: "테이블오더는 테이블 수만큼 태블릿이 들어갑니다. 수량은 견적 신청 때 알려 주시면 맞춰 드립니다." },
     l: { items: [["tableorder",16,"테이블 16개 기준"],["pos",2,"홀·주방 분리"],["kiosk",1,"포장 주문용"]], note: "대형 식당은 포장 주문 키오스크를 따로 두면 홀 회전이 빨라집니다." }
   },
   unmanned: {
@@ -96,48 +96,6 @@ document.querySelectorAll(".tab").forEach(tab => {
     document.querySelector(`.panel[data-panel="${tab.dataset.tab}"]`).classList.add("is-on");
   });
 });
-
-/* ---------- 구입 vs 렌탈 계산기 ---------- */
-function calc(){
-  let rInit = 0, rMonth = 0, bInit = 0, bMonth = 0, any = false, picks = [];
-  document.querySelectorAll("#calcItems .ci").forEach(ci => {
-    const k = ci.dataset.key, q = Math.max(0, parseInt(ci.querySelector("input").value, 10) || 0);
-    if(!q) return;
-    any = true; picks.push(PRICE[k].name + " " + q + "대");
-    rMonth += PRICE[k].rent * q;
-    bInit  += PRICE[k].buy * q;
-  });
-  const rTotal = rInit + rMonth * MONTHS;
-  const bTotal = bInit + bMonth * MONTHS;
-  document.getElementById("rInit").textContent = won(rInit);
-  document.getElementById("rMonth").textContent = won(rMonth);
-  document.getElementById("rTotal").textContent = won(rTotal);
-  document.getElementById("bInit").textContent = won(bInit);
-  document.getElementById("bMonth").textContent = won(bMonth);
-  document.getElementById("bTotal").textContent = won(bTotal);
-
-  const v = document.getElementById("crVerdict");
-  if(!any){ v.textContent = "장비를 선택해 주세요."; }
-  else if(rTotal < bTotal){
-    v.innerHTML = `36개월 기준 <b>렌탈</b>이 <b>${won(bTotal - rTotal)}</b> 저렴합니다. 초기 부담도 0원이라 시작하기 쉽습니다.`;
-  } else if(bTotal < rTotal){
-    const be = Math.ceil(bInit / rMonth); // 손익분기 개월
-    v.innerHTML = `36개월 기준 <b>구입</b>이 <b>${won(rTotal - bTotal)}</b> 저렴합니다. 약 <b>${be}개월</b>째부터 구입 쪽이 유리해집니다.`;
-  } else {
-    v.textContent = "두 방식의 36개월 총비용이 같습니다. 초기 부담을 줄이려면 렌탈을 권합니다.";
-  }
-  document.getElementById("calcCta").dataset.pick = "계산기 수량: " + picks.join(", ") + (any ? ` (렌탈 월 ${won(rMonth)} / 구입 ${won(bInit)})` : "");
-}
-document.getElementById("calcItems").addEventListener("click", e => {
-  const b = e.target.closest(".q-btn"); if(!b) return;
-  const inp = b.parentElement.querySelector("input");
-  const max = parseInt(inp.max, 10) || 50;
-  inp.value = Math.min(max, Math.max(0, (parseInt(inp.value,10) || 0) + parseInt(b.dataset.d, 10)));
-  calc();
-});
-document.getElementById("calcItems").addEventListener("input", calc);
-calc();
-
 /* ---------- "견적 받기" 링크 → 폼에 선택 내용 미리 채우기 ---------- */
 document.addEventListener("click", e => {
   const a = e.target.closest("a[data-pick]"); if(!a) return;

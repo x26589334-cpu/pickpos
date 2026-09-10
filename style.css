@@ -168,30 +168,6 @@ ul,ol{margin:0;padding:0;list-style:none}
 .panel-pick li::before{content:"— ";color:var(--muted)}
 .panel-body .btn{margin-top:22px}
 
-/* ---------- 계산기 ---------- */
-.calc{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start}
-.calc-items{display:flex;flex-direction:column;gap:10px}
-.ci{display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 18px}
-.ci-name b{display:block;font-size:1rem}
-.ci-name span{font-size:.8rem;color:rgba(255,255,255,.6)}
-.ci-qty{display:flex;align-items:center;gap:6px}
-.q-btn{width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font-size:1.1rem;font-weight:700}
-.q-btn:hover{background:rgba(255,255,255,.12)}
-.ci-qty input{width:52px;height:34px;text-align:center;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-weight:700;-moz-appearance:textfield}
-.ci-qty input::-webkit-outer-spin-button,.ci-qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-.calc-result{background:#fff;color:var(--ink);border-radius:var(--radius);padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:18px;position:sticky;top:90px}
-.cr-col{background:var(--cream);border-radius:12px;padding:16px}
-.cr-head{font-family:var(--serif);font-weight:900;font-size:1.1rem;color:var(--navy);margin-bottom:8px}
-.cr-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;font-size:.9rem;border-bottom:1px dashed var(--line)}
-.cr-row span{color:var(--muted)}
-.cr-row strong{font-variant-numeric:tabular-nums}
-.cr-row.total{border-bottom:0;padding-top:10px}
-.cr-row.total strong{font-size:1.15rem;color:var(--accent-dark)}
-.cr-verdict{grid-column:1/-1;background:var(--navy);color:#fff;border-radius:12px;padding:14px 16px;font-weight:600;font-size:.95rem}
-.cr-verdict b{color:var(--gold)}
-.cr-note{grid-column:1/-1;font-size:.78rem;color:var(--muted)}
-.calc-result .btn{grid-column:1/-1}
-
 /* ---------- 절차 타임라인 ---------- */
 .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:step}
 .timeline li{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px 22px;position:relative}
@@ -308,8 +284,6 @@ ul,ol{margin:0;padding:0;list-style:none}
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .panel{grid-template-columns:1fr;gap:26px}
   .panel-media{min-height:auto}
-  .calc{grid-template-columns:1fr}
-  .calc-result{position:static}
   .timeline{grid-template-columns:1fr 1fr}
   .timeline li::before{display:none}
   .sets{grid-template-columns:1fr 1fr}
@@ -334,7 +308,6 @@ ul,ol{margin:0;padding:0;list-style:none}
   .swap-cards{grid-template-columns:1fr}
   .f-row.two{grid-template-columns:1fr}
   .qform{padding:20px}
-  .calc-result{grid-template-columns:1fr}
   .mbar{display:flex}
   .finder{padding:20px}
 }

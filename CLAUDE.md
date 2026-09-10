@@ -11,7 +11,9 @@
 
 ## 메인 구조 (2026-09-10 H포스식으로 개편)
 순서: 빵부스러기 → **#regions 지역 찾기**(시도 17·시군구 234, 검색·장비토글) → **#stats 전국 서비스 안내**
-→ #finder 장비 진단 → #catalog → #calc → #process → #sets → #swap → #faq → #quote
+→ #finder 장비 진단 → #catalog → #process → #sets → #swap → #faq → #quote
+- **비용 계산기 섹션(#calc)은 2026-09-10 삭제**했다(사용자 지시). 관련 HTML·JS·CSS 전부 제거.
+  계산기로 가던 링크 968개는 `compare/`(구입 vs 렌탈 비교 가이드)로 돌렸다. `#calc` 를 다시 쓰지 말 것.
 - **카탈로그 탭 바로가기**: `#catalog-pos` `#catalog-terminal` `#catalog-kiosk` `#catalog-tableorder` `#catalog-vending`
   상단 메뉴의 "포스기·카드단말기"와 "무인자판기"가 같은 `#catalog` 를 가리키던 것을 이걸로 갈랐다. 동작은 `script.js` 맨 아래.
 - 지역 데이터는 **`region-data.js`** 의 `PICK_REGIONS`. 지역 전용 페이지가 있는 곳만 `PICK_REGION_PAGES` 에 적는다.
