@@ -17,6 +17,17 @@
   → `region/` 에 새 지역 글을 쓰면 `PICK_REGION_PAGES` 에 한 줄 추가할 것.
 - 지역 찾기 동작은 `script.js` 맨 아래 블록.
 
+## 지역 페이지 234개 — 생성기로 만든다
+- 만드는 법: `powershell -ExecutionPolicy Bypass -File _content지역페이지생성.ps1`
+- 재료: `_content/지역데이터.tsv` (slug·시도·지역명·동목록·별칭). 동 3,066개가 들어 있어 페이지마다 내용이 다르다.
+- **손으로 쓴 `seoul-gangnam.html` 은 생성기 SKIP 목록에 있다.** 다른 페이지를 손으로 고치면 다음 실행 때 덮어써지니, 고칠 일이 있으면 **생성기 템플릿을 고치고 전체를 다시 돌린다.**
+- 요금을 바꾸면 생성기 안의 `` 배열도 같이 고치고 재생성할 것 (`script.js` 의 PRICE 와 같은 값).
+- 재생성 후에는 `region-data.js`·`region/index.html`·`sitemap.xml` 도 함께 갱신한다.
+
+### ⚠️ PowerShell 스크립트는 BOM 있는 UTF-8 로 저장
+BOM 이 없으면 PowerShell 5.1 이 한글을 ANSI 로 읽어 **문법 오류로 실행이 실패**한다.
+`_content/*.ps1` 을 고친 뒤에는 BOM 을 확인할 것 (첫 3바이트 239,187,191).
+
 ## 주의사항
 - **캐시 버전**: `style.css` / `script.js` / `og-image.png` 를 수정하면 `index.html` 안의
   `?v=` 값을 전부 올려야 방문자에게 반영된다. 안 올리면 "바뀐 게 없다"가 된다.
