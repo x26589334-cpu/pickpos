@@ -23,19 +23,16 @@ $MENU = @(
   @{ label="설치 후기";         root="review/";           own="review" }
 )
 
-function Build-Nav([string]$folder, [string]$indent, [bool]$mobile) {
+function Build-Nav([string]$folder, [string]$indent, [string]$kind) {
+  # $kind: desktop | mobile | footer
   $prefix = if ($folder) { "../" } else { "" }
   $lines = foreach ($m in $MENU) {
-    $href =
-      if ($m.own -and $m.own -eq $folder) { "./" }
-      elseif ($m.root.StartsWith("#"))    { "$prefix$($m.root)" }
-      else                                { "$prefix$($m.root)" }
+    $href = if ($m.own -and $m.own -eq $folder) { "./" } else { "$prefix$($m.root)" }
     "$indent<a href=`"$href`">$($m.label)</a>"
   }
-  if ($mobile) {
-    $q = if ($folder) { "../#quote" } else { "#quote" }
-    $lines += "$indent<a href=`"$q`" class=`"mnav-cta`">견적 받기</a>"
-  }
+  $q = if ($folder) { "../#quote" } else { "#quote" }
+  if ($kind -eq "mobile") { $lines += "$indent<a href=`"$q`" class=`"mnav-cta`">견적 받기</a>" }
+  if ($kind -eq "footer") { $lines += "$indent<a href=`"$q`">견적 신청</a>" }
   return ($lines -join "`n")
 }
 
@@ -57,8 +54,9 @@ foreach ($f in $files) {
   # 리다이렉트 전용 페이지처럼 메뉴가 없는 파일은 건너뛴다
   if ($html -notmatch '<nav class="nav" aria-label="주요 메뉴">') { $skipped++; continue }
 
-  $deskNav = Build-Nav $folder "      " $false
-  $mobNav  = Build-Nav $folder "    "   $true
+  $deskNav = Build-Nav $folder "      " "desktop"
+  $mobNav  = Build-Nav $folder "    "   "mobile"
+  $footNav = Build-Nav $folder "      " "footer"
 
   $html = [regex]::Replace($html,
     '(?s)(<nav class="nav" aria-label="주요 메뉴">).*?(\r?\n\s*</nav>)',
@@ -67,6 +65,10 @@ foreach ($f in $files) {
   $html = [regex]::Replace($html,
     '(?s)(<div class="mnav" id="mnav">).*?(\r?\n\s*</div>)',
     { param($m) $m.Groups[1].Value + "`n" + $mobNav + $m.Groups[2].Value })
+
+  $html = [regex]::Replace($html,
+    '(?s)(<nav class="foot-nav" aria-label="바닥 메뉴">).*?(\r?\n\s*</nav>)',
+    { param($m) $m.Groups[1].Value + "`n" + $footNav + $m.Groups[2].Value })
 
   [System.IO.File]::WriteAllText($f.FullName, $html, [System.Text.UTF8Encoding]::new($false))
   $changed++
