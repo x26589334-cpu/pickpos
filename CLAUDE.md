@@ -57,6 +57,8 @@ BOM 이 없으면 PowerShell 5.1 이 한글을 ANSI 로 읽어 **문법 오류�
 - `PRICE` 를 고치면 `compare/` 글과 `region/` 페이지의 손익분기 표가 전부 바뀐다. grep 해서 함께 갱신할 것.
 
 ## 매일 글쓰기
+**글을 올린 뒤에는 `powershell -NoProfile -ExecutionPolicy Bypass -File _contentRSS생성.ps1` 로 `rss.xml` 을 갱신해 함께 커밋한다** (후기·비교 글 최신 100건, 2026-09-11 신설. 네이버 서치어드바이저 등록 주소 `https://hsupporter.com/rss.xml`).
+
 **"오늘 후기 써줘"** → `_content/후기양식.md` (설치 후기, 사진 1장씩 순번대로)
 **"오늘 글 써줘"** → `_content/글양식.md` (비교 가이드 / 지역별 견적 번갈아)
 
