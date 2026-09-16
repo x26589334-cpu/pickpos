@@ -116,7 +116,7 @@ foreach ($r in $rows) {
 <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-<link rel="stylesheet" href="../style.css?v=20260911b" />
+<link rel="stylesheet" href="../style.css?v=20260916a" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -155,8 +155,8 @@ foreach ($r in $rows) {
     </a>
     <nav class="nav" aria-label="주요 메뉴">
       <a href="../#regions">지역 찾기</a>
-      <a href="../#catalog-pos">포스기·카드단말기</a>
-      <a href="../#catalog-vending">무인자판기</a>
+      <a href="../pos.html">포스기·카드단말기</a>
+      <a href="../vending.html">무인자판기</a>
       <a href="../compare/">비교 가이드</a>
       <a href="./">지역별 견적</a>
       <a href="../review/">설치 후기</a>
@@ -169,8 +169,8 @@ foreach ($r in $rows) {
   </div>
   <div class="mnav" id="mnav">
     <a href="../#regions">지역 찾기</a>
-    <a href="../#catalog-pos">포스기·카드단말기</a>
-    <a href="../#catalog-vending">무인자판기</a>
+    <a href="../pos.html">포스기·카드단말기</a>
+    <a href="../vending.html">무인자판기</a>
     <a href="../compare/">비교 가이드</a>
     <a href="./">지역별 견적</a>
     <a href="../review/">설치 후기</a>
@@ -319,8 +319,8 @@ foreach ($r in $rows) {
     </div>
     <nav class="foot-nav" aria-label="바닥 메뉴">
       <a href="../#regions">지역 찾기</a>
-      <a href="../#catalog-pos">포스기·카드단말기</a>
-      <a href="../#catalog-vending">무인자판기</a>
+      <a href="../pos.html">포스기·카드단말기</a>
+      <a href="../vending.html">무인자판기</a>
       <a href="../compare/">비교 가이드</a>
       <a href="./">지역별 견적</a>
       <a href="../review/">설치 후기</a>
@@ -336,7 +336,7 @@ foreach ($r in $rows) {
   <a href="../#quote" class="mbar-main">견적 받기</a>
 </div>
 
-<script src="../page.js?v=20260911b"></script>
+<script src="../page.js?v=20260916a"></script>
 </body>
 </html>
 "@

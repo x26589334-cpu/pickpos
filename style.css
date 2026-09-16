@@ -596,3 +596,12 @@ ul,ol{margin:0;padding:0;list-style:none}
   .stat strong{font-size:1.7rem}
   .sgg-wrap{padding:16px}
 }
+
+/* ---------- 섹션 하단 "자세히" 링크 · 루트 안내 페이지 (2026-09-16) ---------- */
+.sec-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.sec-links a{display:inline-flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:.88rem;font-weight:700;color:var(--navy);transition:.15s}
+.sec-links a::after{content:" →";margin-left:4px}
+.sec-links a:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.sec-dark .sec-links a,.sec-quote .sec-links a{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+.art ol{margin:0 0 20px;display:flex;flex-direction:column;gap:10px;padding:0}
+.art ol li{line-height:1.7}

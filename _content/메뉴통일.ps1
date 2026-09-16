@@ -16,28 +16,34 @@ $repo = Split-Path -Parent $PSScriptRoot
 # 메뉴 정의: 표시이름 / 루트 기준 경로 / 이 항목이 "현재 위치"가 되는 폴더
 $MENU = @(
   @{ label="지역 찾기";        root="#regions";          own=$null },
-  @{ label="포스기·카드단말기"; root="#catalog-pos";      own=$null },
-  @{ label="무인자판기";        root="#catalog-vending";  own=$null },
+  @{ label="포스기·카드단말기"; root="pos.html";         own=$null },
+  @{ label="무인자판기";        root="vending.html";     own=$null },
   @{ label="비교 가이드";       root="compare/";          own="compare" },
   @{ label="지역별 견적";       root="region/";           own="region" },
   @{ label="설치 후기";         root="review/";           own="review" }
 )
 
-function Build-Nav([string]$folder, [string]$indent, [string]$kind) {
+function Build-Nav([string]$folder, [string]$indent, [string]$kind, [bool]$isIndex) {
   # $kind: desktop | mobile | footer
-  $prefix = if ($folder) { "../" } else { "" }
+  # $isIndex: 루트 index.html 이면 true.
+  #   루트의 다른 페이지(pos.html 등)에서 "#regions" 는 자기 페이지 안을 가리키므로 "./#regions" 로 메인에 보낸다.
+  $prefix     = if ($folder) { "../" } else { "" }
+  $hashPrefix = if ($folder) { "../" } elseif ($isIndex) { "" } else { "./" }
   $lines = foreach ($m in $MENU) {
-    $href = if ($m.own -and $m.own -eq $folder) { "./" } else { "$prefix$($m.root)" }
+    $href =
+      if ($m.own -and $m.own -eq $folder) { "./" }
+      elseif ($m.root.StartsWith("#"))    { "$hashPrefix$($m.root)" }
+      else                                { "$prefix$($m.root)" }
     "$indent<a href=`"$href`">$($m.label)</a>"
   }
-  $q = if ($folder) { "../#quote" } else { "#quote" }
+  $q = "${hashPrefix}#quote"
   if ($kind -eq "mobile") { $lines += "$indent<a href=`"$q`" class=`"mnav-cta`">견적 받기</a>" }
   if ($kind -eq "footer") { $lines += "$indent<a href=`"$q`">견적 신청</a>" }
   return ($lines -join "`n")
 }
 
 $files = @()
-$files += Get-ChildItem $repo -Filter "index.html" -File
+$files += Get-ChildItem $repo -Filter "*.html" -File   # 루트의 모든 페이지. 메뉴가 없는 파일은 아래에서 건너뛴다
 foreach ($sub in @("compare","region","review")) {
   $p = Join-Path $repo $sub
   if (Test-Path $p) { $files += Get-ChildItem $p -Filter "*.html" -File }
@@ -54,9 +60,10 @@ foreach ($f in $files) {
   # 리다이렉트 전용 페이지처럼 메뉴가 없는 파일은 건너뛴다
   if ($html -notmatch '<nav class="nav" aria-label="주요 메뉴">') { $skipped++; continue }
 
-  $deskNav = Build-Nav $folder "      " "desktop"
-  $mobNav  = Build-Nav $folder "    "   "mobile"
-  $footNav = Build-Nav $folder "      " "footer"
+  $isIndex = (-not $folder) -and ($f.Name -eq "index.html")
+  $deskNav = Build-Nav $folder "      " "desktop" $isIndex
+  $mobNav  = Build-Nav $folder "    "   "mobile"  $isIndex
+  $footNav = Build-Nav $folder "      " "footer"  $isIndex
 
   $html = [regex]::Replace($html,
     '(?s)(<nav class="nav" aria-label="주요 메뉴">).*?(\r?\n\s*</nav>)',
