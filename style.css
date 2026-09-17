@@ -605,3 +605,9 @@ ul,ol{margin:0;padding:0;list-style:none}
 .sec-dark .sec-links a,.sec-quote .sec-links a{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
 .art ol{margin:0 0 20px;display:flex;flex-direction:column;gap:10px;padding:0}
 .art ol li{line-height:1.7}
+
+/* ---------- 메인 지역 목록: HTML 정적 링크 (2026-09-17) ---------- */
+.sgg-panel[hidden]{display:none!important}
+a.sgg,span.sgg{display:inline-block;text-decoration:none}
+span.sgg{opacity:.6;cursor:default}
+a.rr{text-decoration:none;color:inherit}

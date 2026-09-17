@@ -148,73 +148,39 @@ if("IntersectionObserver" in window){
 }
 
 /* =========================================================
-   지역 찾기 (#regions) — 시도 그리드 · 시군구 · 검색
-   데이터는 region-data.js 의 window.PICK_REGIONS
-   지역 전용 페이지가 있으면 그리로, 없으면 견적 폼에 지역을 채워 넣는다.
+   지역 찾기 (#regions) — 시도 버튼 · 시군구 목록 · 검색
+   ※ 시도 버튼과 시군구 234개 링크는 index.html 에 이미 들어 있다 (네이버 봇이 읽고 따라가게).
+     여기서는 누른 시도의 목록만 보이게 하고, 검색 결과를 띄운다.
+   데이터(검색용): region-data.js 의 PICK_REGIONS · PICK_REGION_PAGES
    ========================================================= */
 (function(){
-  const DATA = window.PICK_REGIONS;
-  const PAGES = window.PICK_REGION_PAGES || {};
   const provGrid = document.getElementById("provGrid");
   const sggWrap  = document.getElementById("sggWrap");
   const search   = document.getElementById("regionSearch");
   const results  = document.getElementById("regionResults");
-  if(!DATA || !provGrid) return;
+  if(!provGrid || !sggWrap) return;
+  const DATA  = window.PICK_REGIONS || [];
+  const PAGES = window.PICK_REGION_PAGES || {};
 
-  // 선택한 장비 (안내 문구·견적 폼 연동용)
-  let prod = "pos";
-  const PROD_LABEL = { pos: "포스기·카드단말기", kiosk: "키오스크·테이블오더", vending: "무인자판기" };
+  // 장비 토글 (선택 표시만)
   document.querySelectorAll("#prodToggle .pt").forEach(b => {
     b.addEventListener("click", () => {
       document.querySelectorAll("#prodToggle .pt").forEach(x => x.classList.remove("on"));
       b.classList.add("on");
-      prod = b.dataset.prod;
-      if(openProv) renderSgg(openProv);
     });
   });
 
-  // 지역을 골랐을 때 — 페이지가 있으면 이동, 없으면 견적 폼으로
-  function goRegion(name){
-    if(PAGES[name]){ location.href = PAGES[name]; return; }
-    const sel = document.getElementById("q_area");
-    if(sel) sel.value = name;
-    const items = document.getElementById("q_items");
-    if(items){
-      const want = prod === "vending" ? "무인자판기" : (prod === "kiosk" ? "키오스크" : "카드단말기");
-      const box = items.querySelector('input[value="' + want + '"]');
-      if(box) box.checked = true;
-    }
-    location.hash = "#quote";
+  // 시도 버튼 → 그 시도 목록만 보이기
+  const panels = sggWrap.querySelectorAll(".sgg-panel");
+  function openProv(p, scroll){
+    provGrid.querySelectorAll(".prov").forEach(x => x.classList.toggle("on", x.dataset.p === p));
+    panels.forEach(el => { el.hidden = (el.dataset.p !== p); });
+    if(scroll) sggWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
+  provGrid.querySelectorAll(".prov").forEach(b =>
+    b.addEventListener("click", () => openProv(b.dataset.p, true)));
 
-  let openProv = null;
-  function renderSgg(p){
-    const g = DATA.find(d => d.p === p);
-    if(!g){ sggWrap.innerHTML = ""; return; }
-    sggWrap.innerHTML =
-      '<div class="sgg-head"><b>' + g.p + '</b> <span>' + g.full + ' · ' + PROD_LABEL[prod] + '</span></div>' +
-      '<div class="sgg-list">' +
-      g.items.map(n => '<button type="button" class="sgg" data-name="' + n + '">' + n +
-        (PAGES[n] ? ' <em>안내</em>' : '') + '</button>').join("") +
-      '</div>';
-    sggWrap.querySelectorAll(".sgg").forEach(b =>
-      b.addEventListener("click", () => goRegion(b.dataset.name)));
-  }
-
-  provGrid.innerHTML = DATA.map(d =>
-    '<button type="button" class="prov" data-p="' + d.p + '">' + d.p +
-    '<span>' + d.items.length + '</span></button>').join("");
-  provGrid.querySelectorAll(".prov").forEach(b => {
-    b.addEventListener("click", () => {
-      provGrid.querySelectorAll(".prov").forEach(x => x.classList.remove("on"));
-      b.classList.add("on");
-      openProv = b.dataset.p;
-      renderSgg(openProv);
-      sggWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    });
-  });
-
-  // 검색 — 띄어쓰기 무시
+  // 검색 — 띄어쓰기 무시, 결과는 실제 링크
   const flat = [];
   DATA.forEach(d => d.items.forEach(n => flat.push({ p: d.p, n: n })));
   const squash = s => s.replace(/\s+/g, "");
@@ -222,14 +188,9 @@ if("IntersectionObserver" in window){
     const q = squash(search.value.trim());
     if(!q){ results.innerHTML = ""; results.classList.remove("on"); return; }
     const hit = flat.filter(x => squash(x.n).includes(q) || squash(x.p + x.n).includes(q)).slice(0, 12);
-    if(!hit.length){
-      results.innerHTML = '<p class="rr-none">검색 결과가 없습니다. 전화로 물어보셔도 됩니다.</p>';
-    }else{
-      results.innerHTML = hit.map(x =>
-        '<button type="button" class="rr" data-name="' + x.n + '"><b>' + x.n + '</b><span>' + x.p + '</span></button>').join("");
-      results.querySelectorAll(".rr").forEach(b =>
-        b.addEventListener("click", () => goRegion(b.dataset.name)));
-    }
+    results.innerHTML = hit.length
+      ? hit.map(x => '<a class="rr" href="' + (PAGES[x.n] || "#quote") + '"><b>' + x.n + '</b><span>' + x.p + '</span></a>').join("")
+      : '<p class="rr-none">검색 결과가 없습니다. 전화로 물어보셔도 됩니다.</p>';
     results.classList.add("on");
   });
   document.addEventListener("click", e => {

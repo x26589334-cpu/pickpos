@@ -95,3 +95,9 @@ git add -A; git commit -m "내용"; git push    # 끝나면
 
 ## 사용자 안내
 코딩 초보자다. 설명은 버튼 하나하나 짚어주듯 천천히, 한국어로.
+
+## 네이버 가이드 대조 후속 (2026-09-17)
+- **RSS 본문 전체**: `_content/RSS생성.ps1` 이 글의 `<article class="art">` 안쪽 HTML 을 description·content:encoded 에 통째로 넣는다(상대주소→절대주소). 최신 50건. 글 양식에서 `<article class="art">` 를 바꾸면 RSS 본문이 비니 주의.
+- **메인 지역 찾기는 정적 HTML**: `index.html` 의 `#provGrid`(시도 17버튼)·`#sggWrap`(시도별 `.sgg-panel` 17개, 시군구 234개 `<a href="region/...">`)는 HTML 에 직접 들어 있다. 봇이 JS 없이 234개 지역 페이지로 따라가게 하려는 것. `script.js` 는 패널 보이기/숨기기와 검색만 한다.
+  - `region-data.js`(지역 추가·삭제)를 바꾸면 **이 HTML 목록도 다시 만들어야** 한다. 안 그러면 링크가 어긋난다.
+  - 숨김은 `hidden` 속성 + `.sgg-panel[hidden]{display:none!important}` (CSS display 가 hidden 을 이기는 함정 방지).
