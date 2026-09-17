@@ -140,6 +140,7 @@ foreach ($r in $rows) {
   ]
 }
 </script>
+<script src="../analytics.js" defer></script>
 </head>
 <body>
 
